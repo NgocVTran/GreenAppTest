@@ -1,0 +1,35 @@
+# input format
+[
+	{
+		"nr_of_people": "4",
+		"country": "Germany",
+		"size_of_housing": "60",
+		"type_of_housing": "Detached",
+		"lightbulbs": "1",
+		"STAR": "1",
+		"thermostat": "0",
+		"energy_saving_device": "0",
+		"solar_water_heater": "1",
+		"heating_energy_source": "Natural Gas"
+	},
+	{
+		"nr_of_people": "6",
+		"country": "Germany",
+		"size_of_housing": "60",
+		"type_of_housing": "Detached",
+		"lightbulbs": "1",
+		"STAR": "0",
+		"thermostat": "0",
+		"energy_saving_device": "0",
+		"solar_water_heater": "1",
+		"heating_energy_source": "Natural Gas"
+	}
+]
+
+# output format
+{
+    "result": [
+        24.109041649958538,
+        35.40040299712233
+    ]
+}
