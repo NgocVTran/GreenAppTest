@@ -1,7 +1,7 @@
 # import API libs
 from flask import Flask, request
 import json
-
+import numpy as np
 # import supportive function
 import util
 
@@ -24,13 +24,13 @@ def api():
         result_list = []
         for g in getJS:
             # read input json and one-hot encoding it
-            input_list = util.getJsonValues(g)
-            onehot = util.onehotEncoding(input_list)
-
+            input_list = util.mergeInput(g)
             # calculate the predicted value
-            outp = util.calculateOutput(onehot)
+            outp = util.calculateOutput(input_list)
             result_list.append(outp[0][0])
+
     return json.dumps({"result": result_list})
+    # return ""
 
 
 if __name__ == "__main__":

@@ -1,30 +1,91 @@
 # input format
 [
+    {
+        "household":{
+            "nr_of_people": "4",
+            "country": "Germany",
+            "size_of_housing": "60",
+            "type_of_housing": "Detached",
+            "electricity_consumption": "12",
+            "clean_energy_source": "20",
+            "lightbulbs": "1",
+            "STAR": "1",
+            "thermostat": "0",
+            "energy_saving_device": "0",
+            "solar_water_heater": "1",
+            "heating_energy_source": "Natural Gas"
+        },
+        "transport":{
+            "intercity_train": "1",
+            "subway": "1",
+            "intercity_bus": "1",
+            "city_bus": "1",
+            "tram": "1",
+            "bike_walk": "1",
+            "car_usage_list": "Gasoline",
+            "annual_mileage": "100",
+            "average_consumption": "100",
+            "flight_very_long": "1",
+            "flight_long": "1",
+            "flight_medium": "1",
+            "flight_short": "1"
+        },
+        "lifestyle":{
+            "preferred_diet": "Meat in most meals",
+            "local_product": "I'm not considering this option",
+            "buy_from_companies": "I'm not considering this option",
+            "eat_out": "2",
+            "food": "0",
+            "paper": "1",
+            "tincan": "1",
+            "plastic": "0",
+            "glass": "0"
+        }
+    },
 	{
-		"nr_of_people": "4",
-		"country": "Germany",
-		"size_of_housing": "60",
-		"type_of_housing": "Detached",
-		"lightbulbs": "1",
-		"STAR": "1",
-		"thermostat": "0",
-		"energy_saving_device": "0",
-		"solar_water_heater": "1",
-		"heating_energy_source": "Natural Gas"
-	},
-	{
-		"nr_of_people": "6",
-		"country": "Germany",
-		"size_of_housing": "60",
-		"type_of_housing": "Detached",
-		"lightbulbs": "1",
-		"STAR": "0",
-		"thermostat": "0",
-		"energy_saving_device": "0",
-		"solar_water_heater": "1",
-		"heating_energy_source": "Natural Gas"
-	}
+        "household":{
+            "nr_of_people": "6",
+            "country": "Germany",
+            "size_of_housing": "60",
+            "type_of_housing": "Detached",
+            "electricity_consumption": "12",
+            "clean_energy_source": "20",
+            "lightbulbs": "1",
+            "STAR": "1",
+            "thermostat": "0",
+            "energy_saving_device": "0",
+            "solar_water_heater": "1",
+            "heating_energy_source": "Natural Gas"
+        },
+        "transport":{
+            "intercity_train": "1",
+            "subway": "1",
+            "intercity_bus": "1",
+            "city_bus": "1",
+            "tram": "1",
+            "bike_walk": "1",
+            "car_usage_list": "Gasoline",
+            "annual_mileage": "100",
+            "average_consumption": "100",
+            "flight_very_long": "1",
+            "flight_long": "1",
+            "flight_medium": "1",
+            "flight_short": "1"
+        },
+        "lifestyle":{
+            "preferred_diet": "Meat in most meals",
+            "local_product": "I'm not considering this option",
+            "buy_from_companies": "I'm not considering this option",
+            "eat_out": "2",
+            "food": "0",
+            "paper": "1",
+            "tincan": "1",
+            "plastic": "0",
+            "glass": "0"
+        }
+    }
 ]
+
 
 # output format
 {
