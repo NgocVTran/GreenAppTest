@@ -1,13 +1,15 @@
 import json
 from equations.constants import COUNTRIES, TYPES_OF_HOUSING, HEATING_ENERGY_SOURCES, FUEL_TYPES, PREFERED_DIET, LOCAL_PRODUCT, BUY_FROM_COMPANES
+import zipfile
 
 class Equations:
     
     def __init__(self):
         self.max_car = 4
         self.coeffs = {}
-        with open('./equations/metadataa', 'r', encoding='utf-8') as file:
-            self.coeffs = json.load(file)
+        with zipfile.ZipFile('./equations/metadataa.zip', 'r') as archive:
+            with archive.open('metadataa', 'r') as file:
+                self.coeffs = json.load(file)
             
     def get_results(cls, input_dicts):
         results = []
