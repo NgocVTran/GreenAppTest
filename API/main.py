@@ -4,10 +4,8 @@ import json
 import numpy as np
 # import supportive function
 import util
-from equations.Equations import Equations
 
 app = Flask(__name__)
-equations = Equations()
 
 
 @app.route("/test1", methods=["POST"])
@@ -33,25 +31,6 @@ def api():
 
     return json.dumps({"result": result_list})
     # return ""
-
-@app.route("/test2", methods=["POST"])
-def calculate():
-    """This function read API as json format, calculate and return
-    the result as a list"""
-
-    # convert json input into list of dictionary, each dict is one
-    # set of input data
-    if request.headers['Content-Type'] == 'application/json':
-        req_data = request.get_json(force=True)
-        _dict = json.dumps(req_data)
-        getJS = json.loads(str(_dict))
-
-        # for each input data, calculate the predicted value
-        results = equations.get_results(getJS)
-
-    return json.dumps({"results": results})
-    # return ""
-
 
 if __name__ == "__main__":
     app.run(debug=True)
