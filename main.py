@@ -1,9 +1,6 @@
 # import API libs
 from flask import Flask, request
 import json
-import numpy as np
-# import supportive function
-import util
 from equations.Equations import Equations
 
 app = Flask(__name__)
