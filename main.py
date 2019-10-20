@@ -4,11 +4,12 @@ import json
 import numpy as np
 # import supportive function
 import util
+from equations.Equations import Equations
 
 app = Flask(__name__)
+equations = Equations()
 
-
-@app.route("/test1", methods=["POST"])
+@app.route("/test", methods=["POST"])
 def api():
     """This function read API as json format, calculate and return
     the result as a list"""
@@ -21,17 +22,11 @@ def api():
         getJS = json.loads(str(dict))
 
         # for each input data, calculate the predicted value
-        result_list = []
-        for g in getJS:
-            # read input json and one-hot encoding it
-            input_list = util.mergeInput(g)
-            # calculate the predicted value
-            outp = util.calculateOutput(input_list)
-            result_list.append(outp[0][0])
+        results = equations.get_results(getJS)
 
-    return json.dumps({"result": result_list})
+    return json.dumps({"result": results})
     # return ""
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
 
