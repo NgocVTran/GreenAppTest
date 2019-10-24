@@ -5,9 +5,8 @@ import pickle
 class Equations:
     
     def __init__(self):
-        self.max_car = 4
         self.coeffs = {}
-        with open('./equations/metadataa.pkl', 'rb') as file:
+        with open('./equations/base_coeff', 'rb') as file:
             self.coeffs = pickle.load(file)
             
     def get_results(cls, input_dicts):
@@ -22,17 +21,33 @@ class Equations:
         flights_offset = cls.flights_equation(input_dict)
         lifestyle_offset = cls.lifestyle_equation(input_dict)
         energy_offset = cls.energy_equation(input_dict)
-        
-        base_result = cls.base_equation(input_dict)
-        base_total_annual = base_result['total_annual']
-        base_country_average = base_result['country_average']
-        base_world_average = base_result['world_average']
-        
+        base_total_annual = cls.base_equation(input_dict)
         total_annual = base_total_annual + transport_offset + flights_offset + lifestyle_offset + energy_offset
         
+        nr_of_people = int(input_dict['household']['nr_of_people'])
+        country = input_dict['household']['country']
+        
+        country_average = 0
+        world_average = 0
+        if country == 'France':
+            country_average = nr_of_people * 4.57
+            world_average = nr_of_people * 4.67
+        elif country == 'Germany':
+            country_average = nr_of_people * 8.89
+            world_average = nr_of_people * 4.67
+        elif country == 'Italy':
+            country_average = nr_of_people * 5.27
+            world_average = nr_of_people * 4.67
+        elif country == 'Spain':
+            country_average = nr_of_people * 5.03
+            world_average = nr_of_people * 4.67
+        elif country == 'United Kingdom':
+            country_average = nr_of_people * 6.5
+            world_average = nr_of_people * 4.67
+        
         return {'total_annual': total_annual,
-                'country_average': base_country_average,
-                'world_average': base_world_average}
+                'country_average': country_average,
+                'world_average': world_average}
     
     def get_root_key(cls, input_dict):
         nr_of_people = input_dict['household']['nr_of_people']
@@ -61,10 +76,10 @@ class Equations:
     def base_equation(cls, input_dict):
         root_key = cls.get_root_key(input_dict)
         size_of_housing = int(input_dict['household']['size_of_housing'])
-        total_annual_25 = cls.coeffs[root_key + ',' + '25']['total_annual']
-        total_annual_200 = cls.coeffs[root_key + ',' + '200']['total_annual']
-        total_annual_500 = cls.coeffs[root_key + ',' + '500']['total_annual']
-        total_annual_1000 = cls.coeffs[root_key + ',' + '1000']['total_annual']
+        total_annual_25 = cls.coeffs[root_key + ',' + '25']
+        total_annual_200 = cls.coeffs[root_key + ',' + '200']
+        total_annual_500 = cls.coeffs[root_key + ',' + '500']
+        total_annual_1000 = cls.coeffs[root_key + ',' + '1000']
 
         total_annual = 0
         if size_of_housing < 100:
@@ -80,11 +95,7 @@ class Equations:
         else:
             total_annual = total_annual_1000 + (total_annual_1000 - total_annual_500) / (1000 - 500) * (1000 - size_of_housing)
         
-        country_average = cls.coeffs[root_key + ',' + '25']['country_average']
-        world_average = cls.coeffs[root_key + ',' + '25']['world_average']
-        return {'total_annual': total_annual,
-                'country_average': country_average,
-                'world_average': world_average}
+        return total_annual
     
     def transports_equation(cls, input_dict):
         transport_annual = 0
